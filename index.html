@@ -74,28 +74,45 @@
         .link-btn.qris { border-color: rgba(234, 179, 8, 0.2); }
         .link-btn.qris:hover { background: rgba(234, 179, 8, 0.1); border-color: #eab308; }
 
-        /* POPUP QRIS COMPACT */
-        .qris-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(6px); z-index: 999; justify-content: center; align-items: center; padding: 15px; }
-        .qris-box { background: #ffffff; color: #111827; border-radius: 20px; padding: 20px 18px; max-width: 310px; width: 100%; text-align: center; position: relative; animation: popIn 0.25s ease-out; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        /* FOOTER KLIKABLE */
+        footer { 
+            margin-top: 25px; 
+            font-size: 0.7rem; 
+            color: #475569; 
+            text-align: center; 
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        footer:hover { color: #818cf8; }
+
+        /* GENERAL MODALS (QRIS & CREDITS) */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(6px); z-index: 999; justify-content: center; align-items: center; padding: 15px; }
+        .modal-box { background: #ffffff; color: #111827; border-radius: 20px; padding: 22px 18px; max-width: 310px; width: 100%; text-align: center; position: relative; animation: popIn 0.25s ease-out; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
         @keyframes popIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        
-        .qris-title { font-size: 0.95rem; font-weight: 700; color: #111827; line-height: 1.35; margin-top: 10px; margin-bottom: 4px; padding: 0 10px; }
-        .qris-sub { font-size: 0.72rem; color: #4b5563; line-height: 1.3; margin-bottom: 12px; }
-        .qris-img { width: 170px; height: 170px; object-fit: contain; margin: 0 auto; display: block; border-radius: 8px; border: 1px solid #e5e7eb; padding: 4px; }
         
         .close-btn { position: absolute; top: 10px; right: 14px; background: none; border: none; color: #6b7280; font-size: 1.1rem; cursor: pointer; }
         .close-btn:hover { color: #111827; }
 
-        footer { margin-top: 25px; font-size: 0.7rem; color: #475569; text-align: center; }
+        /* QRIS MODAL */
+        .qris-title { font-size: 0.95rem; font-weight: 700; color: #111827; line-height: 1.35; margin-top: 10px; margin-bottom: 4px; padding: 0 10px; }
+        .qris-sub { font-size: 0.72rem; color: #4b5563; line-height: 1.3; margin-bottom: 12px; }
+        .qris-img { width: 170px; height: 170px; object-fit: contain; margin: 0 auto; display: block; border-radius: 8px; border: 1px solid #e5e7eb; padding: 4px; }
+
+        /* CREDITS MODAL */
+        .cr-title { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 6px; }
+        .cr-desc { font-size: 0.78rem; color: #4b5563; line-height: 1.4; margin-bottom: 14px; }
+        .cr-list { background: #f3f4f6; border-radius: 12px; padding: 12px; text-align: left; font-size: 0.78rem; color: #374151; display: flex; flex-direction: column; gap: 8px; }
+        .cr-item { display: flex; justify-content: space-between; }
+        .cr-item span { font-weight: 600; color: #6366f1; }
     </style>
 </head>
 <body>
     <div class="ambient-bg"></div>
     <div class="card">
-        <!-- BANNER VIDEO (DIPUTAR OTOMATIS DAN TANPA SUARA BIAR GAK DIBLOKIR BROWSER) -->
+        <!-- BANNER VIDEO WEBM LANGSUNG RAW GITHUB -->
         <div class="banner-container">
             <video class="banner-video" autoplay loop muted playsinline>
-                <source src="https://github.com/daniansaalaqsoz-blip/Scrip/raw/refs/heads/main/VID-20261028-WA0006.webm" type="video/webm">
+                <source src="https://raw.githubusercontent.com/daniansaalaqsoz-blip/Scrip/main/VID-20261028-WA0006.webm" type="video/webm">
             </video>
         </div>
 
@@ -146,22 +163,39 @@
                 </div>
             </div>
 
-            <footer>
+            <!-- FOOTER COPYRIGHT DENGAN POPUP CREDITS -->
+            <footer onclick="openCredits()">
                 &copy; 2026 kyórii. All rights reserved. (beta)
             </footer>
         </div>
     </div>
 
     <!-- MODAL POPUP QRIS -->
-    <div class="qris-modal" id="qrisModal" onclick="closeQris(event)">
-        <div class="qris-box">
+    <div class="modal" id="qrisModal" onclick="closeQris(event)">
+        <div class="modal-box">
             <button class="close-btn" onclick="toggleQris(false)"><i class="fa-solid fa-xmark"></i></button>
             
             <div class="qris-title">Scan QR Code di bawah ini pakai aplikasi bank/ewallet</div>
             <div class="qris-sub">(atau screenshot & upload ke aplikasi bank/ewallet Anda)</div>
             
-            <!-- GAMBAR BARCODE QRIS -->
             <img src="https://cdn.discordapp.com/attachments/1457352525240995910/1563990851045040320/qr_ID1026586239216_26.10.26_1792954862_1792954862766.jpg?ex=6adfa37c&is=6ade51fc&hm=38882974c9559742c4cd911791c2c3757e7169f589bca1f7a61dc29a1d405c6f&" alt="QRIS Code" class="qris-img">
+        </div>
+    </div>
+
+    <!-- MODAL POPUP CREDITS -->
+    <div class="modal" id="creditsModal" onclick="closeCredits(event)">
+        <div class="modal-box">
+            <button class="close-btn" onclick="toggleCredits(false)"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="cr-title">✨ Credits & Info</div>
+            <div class="cr-desc">Detail informasi pembuatan laman web kyórii</div>
+            
+            <div class="cr-list">
+                <div class="cr-item">Developer: <span>kyórii</span></div>
+                <div class="cr-item">Audio Track: <span>Ricky Montgomery</span></div>
+                <div class="cr-item">Hosting: <span>InfinityFree</span></div>
+                <div class="cr-item">Domain: <span>kyomiizx.my.id</span></div>
+            </div>
         </div>
     </div>
 
@@ -170,7 +204,9 @@
         const playBtn = document.getElementById('playBtn');
         const playIcon = document.getElementById('playIcon');
         const musicIcon = document.getElementById('musicIcon');
+        
         const qrisModal = document.getElementById('qrisModal');
+        const creditsModal = document.getElementById('creditsModal');
 
         function toggleAudio() {
             if (audio.paused) {
@@ -208,13 +244,28 @@
             qrisModal.style.display = 'flex';
         }
 
-        function toggleToggle(show) {
+        function toggleQris(show) {
             qrisModal.style.display = show ? 'flex' : 'none';
         }
 
         function closeQris(e) {
             if (e.target === qrisModal) {
                 qrisModal.style.display = 'none';
+            }
+        }
+
+        // SCRIPT POPUP CREDITS
+        function openCredits() {
+            creditsModal.style.display = 'flex';
+        }
+
+        function toggleCredits(show) {
+            creditsModal.style.display = show ? 'flex' : 'none';
+        }
+
+        function closeCredits(e) {
+            if (e.target === creditsModal) {
+                creditsModal.style.display = 'none';
             }
         }
 
