@@ -106,12 +106,35 @@
         .qris-sub { font-size: 0.72rem; color: #4b5563; line-height: 1.3; margin-bottom: 12px; }
         .qris-img { width: 170px; height: 170px; object-fit: contain; margin: 0 auto; display: block; border-radius: 8px; border: 1px solid #e5e7eb; padding: 4px; }
 
-        /* CREDITS MODAL */
+        /* CREDITS MODAL WITH IKON */
         .cr-title { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 6px; }
         .cr-desc { font-size: 0.78rem; color: #4b5563; line-height: 1.4; margin-bottom: 14px; }
-        .cr-list { background: #f3f4f6; border-radius: 12px; padding: 12px; text-align: left; font-size: 0.78rem; color: #374151; display: flex; flex-direction: column; gap: 8px; }
-        .cr-item { display: flex; justify-content: space-between; }
-        .cr-item span { font-weight: 600; color: #6366f1; }
+        .cr-list { background: #f3f4f6; border-radius: 12px; padding: 12px; text-align: left; font-size: 0.78rem; color: #374151; display: flex; flex-direction: column; gap: 10px; }
+        
+        .cr-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+        
+        .cr-item span:first-child {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4b5563;
+            font-weight: 500;
+        }
+
+        .cr-item span:first-child i {
+            width: 14px;
+            text-align: center;
+            color: #6366f1;
+        }
+
+        .cr-item span:last-child {
+            font-weight: 600; 
+            color: #6366f1; 
+        }
     </style>
 </head>
 <body>
@@ -174,6 +197,134 @@
             <!-- FOOTER COPYRIGHT DENGAN POPUP CREDITS -->
             <footer onclick="openCredits()">
                 &copy; 2026 kyórii. All rights reserved. (beta)
+            </footer>
+        </div>
+    </div>
+
+    <!-- MODAL POPUP QRIS -->
+    <div class="modal" id="qrisModal" onclick="closeQris(event)">
+        <div class="modal-box">
+            <button class="close-btn" onclick="toggleQris(false)"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="qris-title">Scan QR Code di bawah ini pakai aplikasi bank/ewallet</div>
+            <div class="qris-sub">(atau screenshot & upload ke aplikasi bank/ewallet Anda)</div>
+            
+            <img src="https://cdn.discordapp.com/attachments/1457352525240995910/1563990851045040320/qr_ID1026586239216_26.10.26_1792954862_1792954862766.jpg?ex=6adfa37c&is=6ade51fc&hm=38882974c9559742c4cd911791c2c3757e7169f589bca1f7a61dc29a1d405c6f&" alt="QRIS Code" class="qris-img">
+        </div>
+    </div>
+
+    <!-- MODAL POPUP CREDITS -->
+    <div class="modal" id="creditsModal" onclick="closeCredits(event)">
+        <div class="modal-box">
+            <button class="close-btn" onclick="toggleCredits(false)"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="cr-title">✨ Credits & Info</div>
+            <div class="cr-desc">Detail informasi pembuatan laman web kyórii</div>
+            
+            <div class="cr-list">
+                <div class="cr-item">
+                    <span><i class="fa-solid fa-code"></i> Developer</span>
+                    <span>kyórii</span>
+                </div>
+                <div class="cr-item">
+                    <span><i class="fa-solid fa-laptop-code"></i> base code</span>
+                    <span>@draventanaka</span>
+                </div>
+                <div class="cr-item">
+                    <span><i class="fa-solid fa-music"></i> Audio Track</span>
+                    <span>Ricky Montgomery</span>
+                </div>
+                <div class="cr-item">
+                    <span><i class="fa-brands fa-tiktok"></i> banner</span>
+                    <span>@m1hatee</span>
+                </div>
+                <div class="cr-item">
+                    <span><i class="fa-solid fa-heart"></i> tq to</span>
+                    <span>tuhan, skill</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('bgAudio');
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        const musicIcon = document.getElementById('musicIcon');
+        
+        const qrisModal = document.getElementById('qrisModal');
+        const creditsModal = document.getElementById('creditsModal');
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    playIcon.classList.remove('fa-play');
+                    playIcon.classList.add('fa-pause');
+                    musicIcon.style.animation = 'spin 4s linear infinite';
+                }).catch(err => {
+                    console.log("Audio Play Error:", err);
+                });
+            } else {
+                audio.pause();
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+                musicIcon.style.animation = 'none';
+            }
+        }
+
+        // AUTO-PLAY SAAT KETUKAN/SENTUHAN PERTAMA DI MANA SAJA PADA LAYAR
+        function initAudioOnTouch() {
+            if (audio.paused) {
+                toggleAudio();
+            }
+            ['touchstart', 'click', 'pointerdown'].forEach(evt => {
+                document.removeEventListener(evt, initAudioOnTouch);
+            });
+        }
+
+        ['touchstart', 'click', 'pointerdown'].forEach(evt => {
+            document.addEventListener(evt, initAudioOnTouch, { once: true });
+        });
+
+        // SCRIPT POPUP QRIS
+        function openQris() {
+            qrisModal.style.display = 'flex';
+        }
+
+        function toggleQris(show) {
+            qrisModal.style.display = show ? 'flex' : 'none';
+        }
+
+        function closeQris(e) {
+            if (e.target === qrisModal) {
+                qrisModal.style.display = 'none';
+            }
+        }
+
+        // SCRIPT POPUP CREDITS
+        function openCredits() {
+            creditsModal.style.display = 'flex';
+        }
+
+        function toggleCredits(show) {
+            creditsModal.style.display = show ? 'flex' : 'none';
+        }
+
+        function closeCredits(e) {
+            if (e.target === creditsModal) {
+                creditsModal.style.display = 'none';
+            }
+        }
+
+        // BERSIHKAN QUERY ?i=5 DARI BARIS URL BROWSER
+        if (window.location.search.includes('i=')) {
+            const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            window.history.replaceState({path: cleanUrl}, '', cleanUrl);
+        }
+    </script>
+</body>
+</html>
+   &copy; 2026 kyórii. All rights reserved. (beta)
             </footer>
         </div>
     </div>
