@@ -17,34 +17,35 @@
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
+        
         body { 
-    min-height: 100vh; 
-    /* GRADASI TEAL DIBUAT EMAPAT/GELAP */
-    background: linear-gradient(180deg, #091319 0%, #0e1d24 50%, #152730 100%); 
-    color: #e2e8f0; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    padding: 20px; 
-    overflow-x: hidden; 
-    position: relative; 
-    touch-action: manipulation;
-}
+            min-height: 100vh; 
+            /* GRADASI TEAL DIBUAT GELAP */
+            background: linear-gradient(180deg, #091319 0%, #0e1d24 50%, #152730 100%); 
+            color: #e2e8f0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+            overflow-x: hidden; 
+            position: relative; 
+            touch-action: manipulation;
+        }
 
-/* CAHAYA AMBIENT BEKAS UNGU DIGANTI KE TEAL/CYAN HARMONIS */
-.ambient-bg { 
-    position: fixed; 
-    width: 350px; 
-    height: 350px; 
-    background: radial-gradient(circle, rgba(69, 123, 136, 0.25) 0%, rgba(0,0,0,0) 70%); 
-    top: 30%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    z-index: 0; 
-    pointer-events: none; 
-}
-
-        /* CARD UTAMA UNTUK BORDER GERAK RGB/PURPLE */
+        /* CAHAYA AMBIENT TEAL/CYAN HARMONIS */
+        .ambient-bg { 
+            position: fixed; 
+            width: 350px; 
+            height: 350px; 
+            background: radial-gradient(circle, rgba(69, 123, 136, 0.25) 0%, rgba(0,0,0,0) 70%); 
+            top: 30%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            z-index: 0; 
+            pointer-events: none; 
+        }
+        
+        /* CARD DENGAN BORDER RGB TIPIS */
         .card { 
             position: relative; 
             z-index: 1; 
@@ -56,7 +57,7 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); 
             animation: fadeIn 1.2s ease-out; 
             overflow: hidden; 
-            padding: 2px;
+            padding: 1.5px;
         }
 
         .card::before {
@@ -67,28 +68,27 @@
             width: 200%;
             height: 200%;
             background: conic-gradient(
-                transparent, 
-                #6366f1, 
-                #a855f7, 
-                #ec4899, 
-                transparent 30%
+                transparent 0deg, 
+                #6366f1 60deg, 
+                #a855f7 120deg, 
+                #ec4899 180deg, 
+                transparent 240deg
             );
             animation: rotateBorder 4s linear infinite;
             z-index: 0;
         }
 
+        /* BACKGROUND CARD DIBUAT TRANSPARAN DENGAN BLUR TEBAL */
         .card-inner {
-    position: relative;
-    z-index: 1;
-    /* BACKGROUND CARD DIBUAT TRANSPARAN BANGER DENGAN BLUR TEBAL */
-    background: rgba(10, 15, 20, 0.55); 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 22px;
-    overflow: hidden;
-    padding-bottom: 25px;
-}
-
+            position: relative;
+            z-index: 1;
+            background: rgba(10, 15, 20, 0.55); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 22px;
+            overflow: hidden;
+            padding-bottom: 25px;
+        }
 
         @keyframes rotateBorder {
             0% { transform: rotate(0deg); }
@@ -114,7 +114,7 @@
 
         .profile-header { position: relative; padding: 0 20px; text-align: left; margin-bottom: 15px; }
         
-        /* AVATAR & BINGKAI FOTO (PNG) */
+        /* AVATAR & BINGKAI FOTO */
         .avatar-container { 
             position: relative; 
             width: 85px; 
@@ -134,13 +134,12 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.4); 
         }
 
-        /* BINGKAI FOTO DEKORASI */
         .avatar-decoration {
             position: absolute;
-            top: ;
-            left: ;
-            width: 120%;
-            height: 120%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             pointer-events: none;
             z-index: 2;
@@ -245,11 +244,11 @@
                 </video>
             </div>
 
-            <!-- FOTO PROFIL & BINGKAI GAMBAR (PNG) -->
+            <!-- FOTO PROFIL & BINGKAI DEKORASI -->
             <div class="profile-header">
                 <div class="avatar-container">
                     <img src="https://raw.githubusercontent.com/daniansaalaqsoz-blip/Scrip/refs/heads/main/IMG-20261013-WA0034.jpg" alt="kyórii" class="avatar">
-                    <img src="https://raw.githubusercontent.com/daniansaalaqsoz-blip/Scrip/refs/heads/main/a_d943453ba3b3f0286c0a76a3b0b0f896.png" class="avatar-decoration" alt="Bingkai Profil">
+                    <img src="https://raw.githubusercontent.com/daniansaalaqsoz-blip/Scrip/main/bingkai.png" class="avatar-decoration" alt="Bingkai Profil">
                 </div>
                 <div class="name-wrapper">
                     <h1>𓍯𝜗𝜚˚kᥡórii𐚁 <i class="fa-solid fa-circle-check verified-badge" title="Verified"></i></h1>
