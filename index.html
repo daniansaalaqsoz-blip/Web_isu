@@ -20,7 +20,6 @@
         
         body { 
             min-height: 100vh; 
-            /* GRADASI TEAL DIBUAT GELAP */
             background: linear-gradient(180deg, #091319 0%, #0e1d24 50%, #152730 100%); 
             color: #e2e8f0; 
             display: flex; 
@@ -32,7 +31,6 @@
             touch-action: manipulation;
         }
 
-        /* CAHAYA AMBIENT TEAL/CYAN HARMONIS */
         .ambient-bg { 
             position: fixed; 
             width: 350px; 
@@ -45,7 +43,7 @@
             pointer-events: none; 
         }
         
-        /* CARD DENGAN BORDER RGB TIPIS */
+        /* CARD KANVAS UNTUK BORDER RGB LEBIH TEBAL */
         .card { 
             position: relative; 
             z-index: 1; 
@@ -54,12 +52,14 @@
             background: #121218; 
             border-radius: 24px; 
             text-align: center; 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); 
+            /* EFEK GLOWING OUTSIDE NEON */
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.25), 0 20px 50px rgba(0, 0, 0, 0.8); 
             animation: fadeIn 1.2s ease-out; 
             overflow: hidden; 
-            padding: 1.5px;
+            padding: 4px; /* TEBAL GARIS RGB DILEBARIN JADI 4PX */
         }
 
+        /* PUTARAN ANIMASI GRADASI RGB */
         .card::before {
             content: '';
             position: absolute;
@@ -68,24 +68,22 @@
             width: 200%;
             height: 200%;
             background: conic-gradient(
-                transparent 0deg, 
-                #6366f1 60deg, 
-                #a855f7 120deg, 
+                #6366f1 0deg, 
+                #a855f7 90deg, 
                 #ec4899 180deg, 
-                transparent 240deg
+                #6366f1 270deg,
+                #6366f1 360deg
             );
             animation: rotateBorder 4s linear infinite;
             z-index: 0;
         }
 
-        /* BACKGROUND CARD DIBUAT TRANSPARAN DENGAN BLUR TEBAL */
+        /* ISI DALAM CARD SOLID PEKAT (MENCEGAH BOCOR KE DALAM) */
         .card-inner {
             position: relative;
             z-index: 1;
-            background: rgba(10, 15, 20, 0.55); 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 22px;
+            background: #121218; /* Dibuat pekat solid */
+            border-radius: 20px;
             overflow: hidden;
             padding-bottom: 25px;
         }
@@ -248,7 +246,7 @@
             <div class="profile-header">
                 <div class="avatar-container">
                     <img src="https://raw.githubusercontent.com/daniansaalaqsoz-blip/Scrip/refs/heads/main/IMG-20261013-WA0034.jpg" alt="kyórii" class="avatar">
-                    <img src="https://raw.githubusercontent.com/daniansaalaqsoz-blip/Scrip/main/bingkai.png" class="avatar-decoration" alt="Bingkai Profil">
+                    <img src="https://raw.githubusercontent.com/daniansaalaqsoz-blip/Scrip/main/bingkai.png" class="avatar-decoration" alt="">
                 </div>
                 <div class="name-wrapper">
                     <h1>𓍯𝜗𝜚˚kᥡórii𐚁 <i class="fa-solid fa-circle-check verified-badge" title="Verified"></i></h1>
