@@ -17,23 +17,33 @@
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
-        body {
-    min-height: 100vh;
-    background: linear-gradient(180deg, #559B9E 0%, #457B88 50%, #355C70 100%);
-    background-attachment: fixed; /* Biar gradasinya ga putus pas di-scroll */
-    color: #e2e8f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    overflow-x: hidden;
-    position: relative;
+        body { 
+    min-height: 100vh; 
+    /* GRADASI TEAL DIBUAT EMAPAT/GELAP */
+    background: linear-gradient(180deg, #091319 0%, #0e1d24 50%, #152730 100%); 
+    color: #e2e8f0; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px; 
+    overflow-x: hidden; 
+    position: relative; 
     touch-action: manipulation;
 }
 
+/* CAHAYA AMBIENT BEKAS UNGU DIGANTI KE TEAL/CYAN HARMONIS */
+.ambient-bg { 
+    position: fixed; 
+    width: 350px; 
+    height: 350px; 
+    background: radial-gradient(circle, rgba(69, 123, 136, 0.25) 0%, rgba(0,0,0,0) 70%); 
+    top: 30%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 0; 
+    pointer-events: none; 
+}
 
-        .ambient-bg { position: fixed; width: 300px; height: 300px; background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%); top: 20%; left: 50%; transform: translate(-50%, -50%); z-index: 0; pointer-events: none; }
-        
         /* CARD UTAMA UNTUK BORDER GERAK RGB/PURPLE */
         .card { 
             position: relative; 
