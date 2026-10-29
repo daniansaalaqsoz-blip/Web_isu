@@ -6,7 +6,7 @@
         "nywid.vercel.app"
     ];
 
-    // 2. DOMAIN LOCK
+    // 2. DOMAIN LOCK (Sengaja bikin tampilan rusak jika dicopy ke domain/file lain)
     if (!ALLOWED_DOMAINS.includes(window.location.hostname)) {
         document.getElementById("root").innerHTML = `
             <div style="background:#121218; color:#e2e8f0; min-height:100vh; padding:20px; font-family:sans-serif;">
@@ -19,7 +19,7 @@
         return;
     }
 
-    // 3. STYLING CSS UTAMA (DIATUR SUPAYA MELEBAR DI HP)
+    // 3. STYLING CSS RESPONSIF MAKSIMAL (PAS FULL SCREEN DI HP)
     const style = document.createElement('style');
     style.innerHTML = `
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; outline: none; }
@@ -31,20 +31,30 @@
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            padding: 8px; /* Dikecilkan lagi supaya card makin lebar ke samping */
+            padding: 12px; 
             overflow-x: hidden; 
             position: relative; 
             touch-action: manipulation; 
         }
 
+        /* KHUSUS TAMPILAN HP (MOBILE BROWSER): DIBUAT FULL LEBAR */
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 6px;
+            }
+            .card {
+                max-width: 100% !important;
+                border-radius: 24px !important;
+            }
+        }
+
         .ambient-bg { position: fixed; width: 300px; height: 300px; background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%); top: 20%; left: 50%; transform: translate(-50%, -50%); z-index: 0; pointer-events: none; }
         
-        /* CARD DIBUAT MAKIN MELEBAR DAN LEBIH LUAS */
         .card { 
             position: relative; 
             z-index: 1; 
             width: 100%; 
-            max-width: 480px; /* Dinaikkan ke 480px agar card makan space layar HP */
+            max-width: 440px; 
             background: #121218; 
             border-radius: 28px; 
             text-align: center; 
@@ -71,18 +81,18 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
-        .banner-container { width: 100%; height: 200px; position: relative; overflow: hidden; background: #121218; }
+        .banner-container { width: 100%; height: 185px; position: relative; overflow: hidden; background: #121218; }
         .banner-video { width: 100%; height: 100%; object-fit: cover; object-position: center; }
         
         .profile-header { position: relative; padding: 0 20px; text-align: left; margin-bottom: 15px; }
-        .avatar-container { position: relative; width: 90px; height: 90px; margin-top: -65px; margin-bottom: -15px; display: flex; justify-content: center; align-items: center; }
+        .avatar-container { position: relative; width: 85px; height: 85px; margin-top: -65px; margin-bottom: -15px; display: flex; justify-content: center; align-items: center; }
         .avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
         .avatar-decoration { position: absolute; width: 120%; height: 120%; object-fit: contain; pointer-events: none; z-index: 2; }
         
         .name-wrapper { margin-top: 5px; }
-        h1 { font-size: 1.55rem; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; display: flex; align-items: center; gap: 6px; }
-        .verified-badge { color: #6366f1; font-size: 1.15rem; transform: translateY(2px); }
-        .username { font-size: 0.88rem; color: #818cf8; margin-top: 4px; font-weight: 600; letter-spacing: 0.5px; }
+        h1 { font-size: 1.5rem; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; display: flex; align-items: center; gap: 6px; }
+        .verified-badge { color: #6366f1; font-size: 1.1rem; transform: translateY(2px); }
+        .username { font-size: 0.85rem; color: #818cf8; margin-top: 4px; font-weight: 600; letter-spacing: 0.5px; }
         
         .card-body { padding: 0 20px; }
         .music-player { background: rgba(255, 255, 255, 0.04); border-radius: 16px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; border: 1px solid rgba(255, 255, 255, 0.06); margin-bottom: 20px; }
@@ -93,19 +103,19 @@
         .play-btn { background: #6366f1; border: none; width: 36px; height: 36px; border-radius: 50%; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; flex-shrink: 0; }
         .play-btn:hover { transform: scale(1.08); background: #4f46e5; }
         
-        .links-container { display: flex; flex-direction: column; gap: 12px; }
-        .link-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 14px; color: #e2e8f0; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: all 0.25s ease; cursor: pointer; }
+        .links-container { display: flex; flex-direction: column; gap: 10px; }
+        .link-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 14px; color: #e2e8f0; text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: all 0.25s ease; cursor: pointer; }
         .link-btn:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
         .link-btn.wa { border-color: rgba(34, 197, 94, 0.2); }
         .link-btn.wa:hover { background: rgba(34, 197, 94, 0.1); border-color: #22c55e; }
         .link-btn.qris { border-color: rgba(234, 179, 8, 0.2); }
         .link-btn.qris:hover { background: rgba(234, 179, 8, 0.1); border-color: #eab308; }
         
-        footer { margin-top: 25px; font-size: 0.75rem; color: #475569; text-align: center; cursor: pointer; transition: color 0.2s ease; }
+        footer { margin-top: 25px; font-size: 0.72rem; color: #475569; text-align: center; cursor: pointer; transition: color 0.2s ease; }
         footer:hover { color: #818cf8; }
         
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(6px); z-index: 999; justify-content: center; align-items: center; padding: 15px; }
-        .modal-box { background: #ffffff; color: #111827; border-radius: 20px; padding: 22px 18px; max-width: 320px; width: 100%; text-align: center; position: relative; animation: popIn 0.25s ease-out; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        .modal-box { background: #ffffff; color: #111827; border-radius: 20px; padding: 22px 18px; max-width: 310px; width: 100%; text-align: center; position: relative; animation: popIn 0.25s ease-out; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
         @keyframes popIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .close-btn { position: absolute; top: 10px; right: 14px; background: none; border: none; color: #6b7280; font-size: 1.1rem; cursor: pointer; }
         .close-btn:hover { color: #111827; }
@@ -122,7 +132,7 @@
     `;
     document.head.appendChild(style);
 
-    // 4. INJECT HTML
+    // 4. INJECT ELEMEN HTML
     document.getElementById("root").innerHTML = `
         <div class="ambient-bg"></div>
         <div class="card">
