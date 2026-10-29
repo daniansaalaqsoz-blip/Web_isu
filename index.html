@@ -17,31 +17,33 @@
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
-        
         body { 
-            min-height: 100vh; 
-            background: linear-gradient(180deg, #091319 0%, #0e1d24 50%, #152730 100%); 
-            color: #e2e8f0; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 20px; 
-            overflow-x: hidden; 
-            position: relative; 
-            touch-action: manipulation;
-        }
+    min-height: 100vh; 
+    /* GRADASI TEAL DIBUAT EMAPAT/GELAP */
+    background: linear-gradient(180deg, #091319 0%, #0e1d24 50%, #152730 100%); 
+    color: #e2e8f0; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px; 
+    overflow-x: hidden; 
+    position: relative; 
+    touch-action: manipulation;
+}
 
-        .ambient-bg { 
-            position: fixed; 
-            width: 350px; 
-            height: 350px; 
-            background: radial-gradient(circle, rgba(69, 123, 136, 0.25) 0%, rgba(0,0,0,0) 70%); 
-            top: 30%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            z-index: 0; 
-            pointer-events: none; 
-        }
+/* CAHAYA AMBIENT BEKAS UNGU DIGANTI KE TEAL/CYAN HARMONIS */
+.ambient-bg { 
+    position: fixed; 
+    width: 350px; 
+    height: 350px; 
+    background: radial-gradient(circle, rgba(69, 123, 136, 0.25) 0%, rgba(0,0,0,0) 70%); 
+    top: 30%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 0; 
+    pointer-events: none; 
+}
+
         
         /* CARD UTAMA UNTUK EFEK RGB MENGALIR */
         .card { 
@@ -79,13 +81,17 @@
 
         /* LAPISAN DALAM KARTU PEKAT BIAR GAK TEMBUS KE DALAM */
         .card-inner {
-            position: relative;
-            z-index: 1;
-            background: #121218; 
-            border-radius: 21.5px;
-            overflow: hidden;
-            padding-bottom: 25px;
-        }
+    position: relative;
+    z-index: 1;
+    /* BACKGROUND CARD DIBUAT TRANSPARAN BANGER DENGAN BLUR TEBAL */
+    background: rgba(10, 15, 20, 0.55); 
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 22px;
+    overflow: hidden;
+    padding-bottom: 25px;
+}
+
 
         @keyframes rotateBorder {
             0% { transform: rotate(0deg); }
