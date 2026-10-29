@@ -43,7 +43,7 @@
             pointer-events: none; 
         }
         
-        /* CARD KANVAS UNTUK BORDER RGB LEBIH TEBAL */
+        /* CARD UTAMA UNTUK EFEK RGB MENGALIR */
         .card { 
             position: relative; 
             z-index: 1; 
@@ -52,14 +52,13 @@
             background: #121218; 
             border-radius: 24px; 
             text-align: center; 
-            /* EFEK GLOWING OUTSIDE NEON */
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.25), 0 20px 50px rgba(0, 0, 0, 0.8); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
             animation: fadeIn 1.2s ease-out; 
             overflow: hidden; 
-            padding: 4px; /* TEBAL GARIS RGB DILEBARIN JADI 4PX */
+            padding: 2.5px; /* Tebal garis jalan RGB */
         }
 
-        /* PUTARAN ANIMASI GRADASI RGB */
+        /* EFEK RGB JALAN & HILANG (TRANSPARENT TAIL) */
         .card::before {
             content: '';
             position: absolute;
@@ -68,22 +67,22 @@
             width: 200%;
             height: 200%;
             background: conic-gradient(
-                #6366f1 0deg, 
-                #a855f7 90deg, 
-                #ec4899 180deg, 
+                transparent 0deg,
+                transparent 180deg,
                 #6366f1 270deg,
-                #6366f1 360deg
+                #a855f7 320deg,
+                #ec4899 360deg
             );
-            animation: rotateBorder 4s linear infinite;
+            animation: rotateBorder 3.5s linear infinite;
             z-index: 0;
         }
 
-        /* ISI DALAM CARD SOLID PEKAT (MENCEGAH BOCOR KE DALAM) */
+        /* LAPISAN DALAM KARTU PEKAT BIAR GAK TEMBUS KE DALAM */
         .card-inner {
             position: relative;
             z-index: 1;
-            background: #121218; /* Dibuat pekat solid */
-            border-radius: 20px;
+            background: #121218; 
+            border-radius: 21.5px;
             overflow: hidden;
             padding-bottom: 25px;
         }
@@ -112,7 +111,7 @@
 
         .profile-header { position: relative; padding: 0 20px; text-align: left; margin-bottom: 15px; }
         
-        /* AVATAR & BINGKAI FOTO */
+        /* AVATAR PROFIL */
         .avatar-container { 
             position: relative; 
             width: 85px; 
@@ -129,18 +128,8 @@
             height: 100%; 
             border-radius: 50%; 
             object-fit: cover; 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4); 
-        }
-
-        .avatar-decoration {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            pointer-events: none;
-            z-index: 2;
+            border: 3px solid #121218;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5); 
         }
 
         .name-wrapper { margin-top: 5px; }
@@ -242,11 +231,10 @@
                 </video>
             </div>
 
-            <!-- FOTO PROFIL & BINGKAI DEKORASI -->
+            <!-- FOTO PROFIL -->
             <div class="profile-header">
                 <div class="avatar-container">
                     <img src="https://raw.githubusercontent.com/daniansaalaqsoz-blip/Scrip/refs/heads/main/IMG-20261013-WA0034.jpg" alt="kyórii" class="avatar">
-                    <img src="https://raw.githubusercontent.com/daniansaalaqsoz-blip/Scrip/main/bingkai.png" class="avatar-decoration" alt="">
                 </div>
                 <div class="name-wrapper">
                     <h1>𓍯𝜗𝜚˚kᥡórii𐚁 <i class="fa-solid fa-circle-check verified-badge" title="Verified"></i></h1>
